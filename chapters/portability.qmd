@@ -77,7 +77,7 @@ Dans cette approche, les différents *packages* qu'on va être amené à utilise
 
 - **conflits de version** : une application A peut dépendre de la version 1 d'un package là où une application B peut dépendre de la version 2 de ce même package. Ces versions d'un même package peuvent avoir des incompatibilités[^release]. Une seule application peut donc fonctionner dans cette configuration ;
 - **version de `Python` fixe** — on ne peut avoir qu'une seule installation par système — là où on voudrait pouvoir avoir des versions différentes selon le projet ;
-- **reproductiblité limitée** : difficile de dire quel projet repose sur tel package, dans la mesure où ceux-ci s'accumulent en un même endroit au fil des projets ;
+- **reproductibilité limitée** : difficile de dire quel projet repose sur tel package, dans la mesure où ceux-ci s'accumulent en un même endroit au fil des projets ;
 - **portabilité limitée** : conséquence du point précédent, il est difficile de fixer dans un fichier les dépendances spécifiques à un projet, et exclusivement celles-ci.
 
 Les environnements virtuels constituent une solution à ces différents problèmes.
@@ -102,13 +102,13 @@ On peut donc simplement voir les environnements virtuels comme un moyen de faire
 
 Il existe différentes implémentations des environnements virtuels en `Python`, dont chacune ont leurs spécificités et leur communauté d'utilisateurs :
 
-* L'implémentation standard en `Python` est `venv`.
+* L'implémentation standard en `Python` est `venv`;
 * `conda` propose une implémentation plus complète.
 
 En pratique pour les utilisateurs, ces implémentations sont relativement proches. La différence conceptuelle majeure est que `conda` est à la fois un *package manager* (comme `pip`) et un gestionnaire d'environnements virtuels (comme `venv`).
 
 Pendant longtemps, `conda` en tant que *package manager* s'est avéré très pratique en *data science*, dans la mesure où il gérait non seulement les dépendances `Python` mais aussi dans d'autres langages, comme des dépendances `C`, très utilisées
-par les principales librairies de _data science_ et dont l'installation peut être complexe sur certains systèmes d'exploitation. Néanmoins, depuis quelques années, l'installation de _packages_ par `pip` se fait de plus en plus par le biais de [_wheels_](https://pythonwheels.com/) qui sont des versions pré-compilées des librairies systèmes, propres à chaque configuration système.
+par les principales librairies de _data science_ et dont l'installation peut être complexe sur certains systèmes d'exploitation. Néanmoins, depuis quelques années, l'installation de _packages_ par `pip` se fait de plus en plus par le biais de [_wheels_](https://pythonwheels.com/) qui sont des versions pré-compilées des librairies système, propres à chaque configuration système.
 
 ::: {.callout-note collapse="true"}
 ## Une différence conceptuelle entre `pip` et `conda`
@@ -134,12 +134,12 @@ nous le verrons ultérieurement.
 ::: {.callout-note collapse="true"}
 ## C'est différent en {{< fa brands r-project >}} ?
 
-On lit souvent, notamment chez les _afficionados_ de {{< fa brands r-project >}} que la gestion des environnements en `Python` est chaotique. C'était vrai au début des années 2010 mais c'est quelques peu exagéré aujourd'hui.
+On lit souvent, notamment chez les _aficionados_ de {{< fa brands r-project >}} que la gestion des environnements en `Python` est chaotique. C'était vrai au début des années 2010 mais c'est quelques peu exagéré aujourd'hui.
 
 La qualité supérieure des outils {{< fa brands r-project >}} pour la gestion des dépendances ne saute pas aux yeux: [`renv`](https://rstudio.github.io/renv/articles/renv.html) est très intéressant mais [ne permet pas de définir la version de
 {{< fa brands r-project >}}](https://rstudio.github.io/renv/articles/renv.html#caveats) :
 
-> R version: renv tracks, but doesn’t help with, the version of R used with the packge. renv can’t easily help with this because it’s run inside of R, but you might find tools like rig helpful, as they make it easier to switch between multiple version of R on one computer.
+> R version: renv tracks, but doesn’t help with, the version of R used with the package. renv can’t easily help with this because it’s run inside of R, but you might find tools like rig helpful, as they make it easier to switch between multiple version of R on one computer.
 
 C'est, en fait, le problème principal des outils {{< fa brands r-project >}} pour la reproductibilité. Pour les utiliser, il faut souvent se trouver dans une session {{< fa brands r-project >}}, avec ses spécificités. Les outils {{< fa brands python >}} qui s'utilisent pas le biais de la ligne de commande offrent une robustesse plus importante. `venv` est certes dépendant de la version de {{< fa brands python >}} utilisée lors de la création de l'environnement mais le fait de passer par le terminal permet de choisir la version de {{< fa brands python >}} qui servira à créer l'environnement. Quant à `conda`, la version de {{< fa brands python >}} est définie dans le `environment.yml` ce qui donne une grande liberté.
 :::
